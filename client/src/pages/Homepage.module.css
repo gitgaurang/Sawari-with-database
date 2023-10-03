@@ -1,0 +1,15 @@
+/* App.css */
+.appcontainer {
+  position: relative; /* Ensure relative positioning for absolute elements */
+}
+.homepage {
+  background-color: rgb(243, 245, 248);
+}
+.background-image {
+  width: 100%;
+  height: auto;
+  position: fixed; /* Position the background image fixed to cover the viewport */
+  top: 0;
+  left: 0;
+  z-index: -1; /* Set the z-index to be below other content */
+}
