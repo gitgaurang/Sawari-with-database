@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import PageNav from "../components/PageNav";
 
 function Dashboard() {
   const [userData, setUserData] = useState(null);
@@ -42,6 +43,7 @@ function Dashboard() {
 
   return (
     <div>
+      <PageNav />
       {userData ? (
         <div>
           <h1>Welcome, {userData.name}!</h1>

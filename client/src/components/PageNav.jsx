@@ -1,34 +1,67 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./PageNav.module.css"; // Import the CSS module
 import { NavLink } from "react-router-dom";
 import Logo from "./Logo";
 
 function PageNav() {
+  // State to track the user's login status
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check the user's login status when the component mounts
+  useEffect(() => {
+    // You can check the user's login status using your authentication logic here
+    // For example, check if a token exists in localStorage or if the user is authenticated in some other way
+    const token = localStorage.getItem("token"); // Change this to match your authentication logic
+    if (token) {
+      setIsLoggedIn(true);
+    } else {
+      setIsLoggedIn(false);
+    }
+  }, []);
+
+  // Function to handle logout
+  const handleLogout = () => {
+    // Remove the user's token from localStorage
+    localStorage.removeItem("token");
+
+    // Update the login status
+    setIsLoggedIn(false);
+
+    // Redirect to the login page or another appropriate page
+    window.location.href = "/login"; // Change the URL as needed
+  };
+
   return (
     <>
       <nav className={styles.nav}>
-        {/* <div className={styles.logo}>
-          <h1 className={styles.logoImage}>Safarii</h1>
-        </div> */}
         <Logo />
         <ul>
           <li>
-            <NavLink to="/">Home</NavLink>
+            {isLoggedIn ? (
+              // If the user is logged in, show the link to "/dashboard"
+              // <NavLink to="/dashboard">Dashboard</NavLink>
+              <NavLink to="/dashboard">Home</NavLink>
+            ) : (
+              // If the user is not logged in, show the link to "/"
+              <NavLink to="/">Home</NavLink>
+            )}
           </li>
           <li>
             <NavLink to="/publish-a-ride">Publish-a-ride</NavLink>
           </li>
           <li>
-            <NavLink to="/registerform">Registeration</NavLink>
+            <NavLink to="/registerform">Registration</NavLink>
           </li>
           <li>
-            <NavLink to="/login" className={styles.ctaLink}>
-              <img
-                src="public\Profile pic.png"
-                alt="Profile"
-                className={styles.profileimage}
-              />
-            </NavLink>
+            {isLoggedIn ? (
+              // If the user is logged in, show the "Logout" button
+              <button onClick={handleLogout}>Logout</button>
+            ) : (
+              // If the user is not logged in, show the "Login" link
+              <NavLink to="/login" className={styles.ctaLink}>
+                Login
+              </NavLink>
+            )}
           </li>
         </ul>
       </nav>
