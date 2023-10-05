@@ -11,6 +11,7 @@ import RegisterForm from "./pages/RegisterForm";
 import RegisterFormPage2 from "./pages/RegisterFormPage2";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
+import SearchRide from "./components/SearchRide";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/" element={<Homepage />} />
         <Route path="signin" element={<Signinpage />} />
         <Route path="publish-a-ride" element={<PublishRideLayout />} />
+        <Route path="search-a-ride" element={<SearchRide />} />
         <Route path="chatbox" element={<ChatBox />} />
         <Route path="login" element={<Login />} />
         <Route path="register" element={<Register />} />

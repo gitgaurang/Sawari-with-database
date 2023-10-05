@@ -3,7 +3,7 @@ import PageNav from "../components/PageNav";
 
 function Dashboard() {
   const [userData, setUserData] = useState(null);
-  const [finalData, setFinalData] = useState(null);
+  // const [finalData, setFinalData] = useState(null);
 
   useEffect(() => {
     // Retrieve the token from localStorage

@@ -50,7 +50,7 @@ function PageNav() {
             <NavLink to="/publish-a-ride">Publish-a-ride</NavLink>
           </li>
           <li>
-            <NavLink to="/registerform">Registration</NavLink>
+            <NavLink to="/search-a-ride">Search-a ride</NavLink>
           </li>
           <li>
             {isLoggedIn ? (

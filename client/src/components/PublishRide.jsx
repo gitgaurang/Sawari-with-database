@@ -48,13 +48,13 @@
 
 //   const handleSubmit = (e) => {
 //     e.preventDefault();
-//     const formData = {
+//     const myRide = {
 //       startLocation,
 //       destination,
 //       date,
 //       passengers,
 //     };
-//     onSubmit(formData);
+//     onSubmit(myRide);
 //   };
 //   console.log(startLocation);
 //   return (
@@ -135,7 +135,7 @@
 // }
 // export default PublishRide;
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./PublishRide.module.css";
 
 function PublishRide({ onSubmit }) {
@@ -144,17 +144,48 @@ function PublishRide({ onSubmit }) {
   const [routeDescription, setRouteDescription] = useState("");
   const [date, setDate] = useState("");
   const [passengers, setPassengers] = useState("");
-
+  const [userData, setUserData] = useState(null);
+  // const [finalData, setFinalData] = useState(null);
   const handleSubmit = (e) => {
     e.preventDefault();
-    const formData = {
+    const myRide = {
       startLocation,
       destination,
       routeDescription,
       date,
       passengers,
     };
-    onSubmit(formData);
+
+    // Make a POST request to your API endpoint
+    fetch("http://localhost:3000/api/v1/rides/Ride", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "x-access-token": localStorage.getItem("token"), // Include the authentication token if required
+      },
+      body: JSON.stringify(myRide),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(`Data after storing ride ${data}`);
+        if (data.status === "ok") {
+          // Handle success
+          console.log("Ride published successfully!");
+          // You can also reset the form fields if needed
+          setStartLocation("");
+          setDestination("");
+          setRouteDescription("");
+          setDate("");
+          setPassengers("");
+        } else {
+          // Handle errors from the API response
+          console.error("Failed to publish ride:", data.message);
+        }
+      })
+      .catch((error) => {
+        // Handle network or other errors
+        console.error("Error publishing ride:", error);
+      });
   };
 
   return (
@@ -202,7 +233,7 @@ function PublishRide({ onSubmit }) {
           value={passengers}
           onChange={(e) => setPassengers(e.target.value)}
         />
-        <button type="submit">Search</button>
+        <button type="submit">Publish ride</button>
       </form>
       <img
         src="/carpoolOpenDoor.png"
