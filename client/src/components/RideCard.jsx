@@ -1,32 +1,25 @@
-// import React from "react";
-// import styles from "./RideCard.module.css"; // Import module CSS
-
-// function RideCard({ ride }) {
-//   return (
-//     <div className={styles.card}>
-//       <h2 className={styles.title}>
-//         {ride.startLocation} to {ride.destination}
-//       </h2>
-//       <p className={styles.description}>Route: {ride.routeDescription}</p>
-//       <p className={styles.passengers}>Passengers: {ride.passengers}</p>
-//       <p className={styles.date}>Date: {ride.date}</p>
-//     </div>
-//   );
-// }
-
-// export default RideCard;
-// RideCard.jsx
-import React from "react";
+import React, { useState } from "react";
 import styles from "./RideCard.module.css";
+import MapModal from "./MapModal"; // Import the MapModal component
 
 function RideCard({ ride, userRole, context, onRequestRide }) {
+  const [showMapModal, setShowMapModal] = useState(false);
+
   const renderButton = () => {
     if (context === "search" && userRole === "user") {
-      // Display request ride button for SearchRide.jsx
+      // Display request ride and show map buttons for SearchRide.jsx
       return (
-        <button className={styles.button} onClick={onRequestRide}>
-          Request Ride
-        </button>
+        <div>
+          <button className={styles.button} onClick={onRequestRide}>
+            Request Ride
+          </button>
+          <button
+            className={styles.button}
+            onClick={() => setShowMapModal(true)}
+          >
+            Show Map
+          </button>
+        </div>
       );
     } else if (context === "myPublished" && userRole === "publisher") {
       // Display accept/reject buttons for MyPublishedRides.jsx
@@ -68,6 +61,11 @@ function RideCard({ ride, userRole, context, onRequestRide }) {
         </p>
       )}
       {renderButton()}
+
+      {/* Render the MapModal when showMapModal state is true */}
+      {showMapModal && (
+        <MapModal ride={ride} onClose={() => setShowMapModal(false)} />
+      )}
     </div>
   );
 }

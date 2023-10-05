@@ -1,18 +1,8 @@
-/* .mainStyle {
-  background-color: "rgba(255, 255, 255, 0.5)";
-  padding: "20px";
-  border-radius: "10px";
-  display: "flex";
-  font-style: "column";
-  gap: "10px";
-} */
-
 .transparentFormContainer {
   background-color: #195b61;
   padding: 20px;
   border-radius: 15px;
   border: 1.5px solid #ccc; /* Add border to the box */
-  height: 20rem;
   width: 20rem;
   position: relative;
   top: 11rem;
@@ -49,7 +39,6 @@
 }
 .backgroundCar {
   height: 115%;
-  /* width: 100%; */
   background-color: rgb(255, 255, 255);
   float: right;
   position: relative;

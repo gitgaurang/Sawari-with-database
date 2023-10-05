@@ -14,6 +14,23 @@ const rideSchema = new Schema({
     type: String,
     required: true,
   },
+  exactStartLocation: {
+    type: String,
+    required: true,
+  },
+  exactEndLocation: {
+    type: String,
+    required: true,
+  },
+  startCoordinates: {
+    type: [Number], // Array of Numbers (longitude, latitude)
+    required: true,
+  },
+  endCoordinates: {
+    type: [Number], // Array of Numbers (longitude, latitude)
+    required: true,
+  },
+
   routeDescription: {
     type: String,
     required: true,

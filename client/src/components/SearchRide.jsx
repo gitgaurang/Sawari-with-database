@@ -262,7 +262,7 @@ function SearchRides() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const ridesList = await fetchRides(e);
-
+    console.log("Rides list:", ridesList);
     // Check if ridesList is an array before filtering
     if (Array.isArray(ridesList)) {
       // Filter rides based on selected startLocation and destination
