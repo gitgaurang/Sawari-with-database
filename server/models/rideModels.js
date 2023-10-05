@@ -26,6 +26,18 @@ const rideSchema = new Schema({
     type: String,
     required: true,
   },
+  rideRequests: [
+    {
+      passenger: {
+        type: mongoose.Types.ObjectId,
+        ref: "users",
+      },
+      currentStatus: {
+        type: Number,
+        default: 0, // Initial status, e.g., 0 for pending
+      },
+    },
+  ],
   date: {
     // data: Buffer,       // Store the image binary data
     // contentType: String, // Store the content type of the image (e.g., 'image/jpeg')

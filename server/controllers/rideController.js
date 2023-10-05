@@ -58,3 +58,45 @@ exports.getMyProfileById = catchAsync(async (req, res, next) => {
     res.status(401).json({ status: "error", error: "Invalid token" });
   }
 });
+exports.requestRide = catchAsync(async (req, res, next) => {
+  try {
+    const { rideId } = req.params;
+    const userId = req.user; // Assuming req.user already contains the user's ID
+
+    const ride = await Ride.findById(rideId);
+
+    if (!ride) {
+      return next(new AppError("Ride not found", 404));
+    }
+
+    // Check if the user has already requested this ride
+    const existingRequest = ride.rideRequests.find((request) =>
+      request.equals(userId)
+    );
+
+    if (existingRequest) {
+      return res.status(400).json({
+        status: "error",
+        error: "You have already requested this ride",
+      });
+    }
+
+    // Add the user's ID to the ride's rideRequests array
+    ride.rideRequests.push(userId);
+
+    await ride.save();
+
+    res.status(201).json({
+      status: "ok",
+      data: {
+        message: "Ride requested successfully",
+      },
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({
+      status: "error",
+      error: "Internal Server Error",
+    });
+  }
+});

@@ -239,7 +239,6 @@ function SearchRides() {
         if (data.status === "ok") {
           // Log the received ride data for debugging
           console.log("All Rides:", data.data);
-          console.log(" Rides:", data.data.rides);
           return data.data.rides;
         } else {
           // Handle error from the API (e.g., token expired, not authenticated)
@@ -274,6 +273,47 @@ function SearchRides() {
       );
 
       setFilteredRides(filtered);
+      console.log("filtered rides:", filteredRides);
+    }
+  };
+
+  // Handle ride request
+  const handleRequestRide = async (rideId) => {
+    try {
+      // Make an API request to request the ride
+      console.log("ride id of filtered ride:", rideId);
+      const response = await fetch(
+        `http://localhost:3000/api/v1/rides/Ride/${rideId}/request`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": localStorage.getItem("token"),
+          },
+        }
+      );
+      console.log("response is :", response);
+
+      if (response.ok) {
+        const data = await response.json();
+
+        if (data.status == "ok") {
+          // Handle success, e.g., show a success message or update the UI
+          alert("Ride requested successfully");
+          // You can also update the UI to indicate that the ride has been requested
+        } else {
+          // Handle API response indicating an error
+          alert("Error requesting ride: " + data.message);
+        }
+      } else {
+        // Handle network error or other issues with the API request
+        alert("Network error. Please try again later.");
+      }
+    } catch (error) {
+      console.error("Error requesting ride:", error);
+      alert(
+        "An error occurred while requesting the ride. Please try again later."
+      );
     }
   };
 
@@ -289,8 +329,8 @@ function SearchRides() {
           >
             <option value="">All</option>
             <option value="Thane">Thane</option>
+            <option value="Mumbai">Mumbai</option>
             <option value="Dombivili">Dombivili</option>
-            <option value="Thane">Thane</option>
             <option value="Kalyan">Kalyan</option>
             <option value="Pune">Pune</option>
             {/* Add more options as needed */}
@@ -305,6 +345,7 @@ function SearchRides() {
             <option value="">All</option>
             <option value="Thane">Thane</option>
             <option value="Dombivili">Dombivili</option>
+            <option value="Mumbai">Mumbai</option>
             <option value="Pune">Pune</option>
             <option value="Kalyan">Kalyan</option>
             {/* Add more options as needed */}
@@ -316,7 +357,13 @@ function SearchRides() {
       </form>
       <div className={styles.rideCards}>
         {filteredRides.map((ride, index) => (
-          <RideCard key={index} ride={ride} />
+          <RideCard
+            key={index}
+            ride={ride}
+            userRole="user"
+            context="search"
+            onRequestRide={() => handleRequestRide(ride._id)} // Pass the rideId to handleRequestRide
+          />
         ))}
       </div>
     </div>

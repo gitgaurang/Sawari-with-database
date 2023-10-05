@@ -12,6 +12,8 @@ import RegisterFormPage2 from "./pages/RegisterFormPage2";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import SearchRide from "./components/SearchRide";
+import MyRequestedRides from "./pages/MyRequestedRides";
+import MyPublishedRides from "./pages/MyPublishedRides";
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path="search-a-ride" element={<SearchRide />} />
         <Route path="chatbox" element={<ChatBox />} />
         <Route path="login" element={<Login />} />
+        <Route path="MyRequestedRides" element={<MyRequestedRides />} />
+        <Route path="MyPublishedRides" element={<MyPublishedRides />} />
         <Route path="register" element={<Register />} />
         <Route path="form" element={<RegisterForm />} />
         <Route path="dashboard" element={<Dashboard />}>

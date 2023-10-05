@@ -10,7 +10,12 @@ router
   .post(rideController.getMyProfileById, rideController.createRide)
   .patch(userController.updateUser)
   .delete(userController.deleteUser);
+
+router
+  .route("/Ride/:rideId/request")
+  .post(rideController.getMyProfileById, rideController.requestRide);
 module.exports = router;
+
 // router
 //   .route("/Ride")
 //   .post(rideController.getMyProfileById, rideController.createRide)
