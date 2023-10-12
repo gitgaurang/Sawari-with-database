@@ -49,6 +49,10 @@ const rideSchema = new Schema({
         type: mongoose.Types.ObjectId,
         ref: "users",
       },
+      userDetails: {
+        type: Object, // Store user details as an object
+        default: null, // Change this to null or undefined
+      },
       currentStatus: {
         type: Number,
         default: 0, // Initial status, e.g., 0 for pending

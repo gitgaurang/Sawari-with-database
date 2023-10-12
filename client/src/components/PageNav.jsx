@@ -50,6 +50,12 @@ function PageNav() {
             <NavLink to="/publish-a-ride">Publish-a-ride</NavLink>
           </li>
           <li>
+            <NavLink to="/MyPublishedRides">My Published Rides</NavLink>
+          </li>
+          <li>
+            <NavLink to="/MyRequestedRides">My Requested Rides</NavLink>
+          </li>
+          <li>
             <NavLink to="/search-a-ride">Search-a ride</NavLink>
           </li>
           <li>

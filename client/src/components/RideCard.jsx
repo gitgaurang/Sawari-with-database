@@ -1,13 +1,84 @@
 import React, { useState } from "react";
 import styles from "./RideCard.module.css";
-import MapModal from "./MapModal"; // Import the MapModal component
+import MapModal from "./MapModal";
 
-function RideCard({ ride, userRole, context, onRequestRide }) {
+function RideCard({
+  ride,
+  userRole,
+  context,
+  onRequestRide,
+  onAcceptRide,
+  onRejectRide,
+}) {
   const [showMapModal, setShowMapModal] = useState(false);
 
-  const renderButton = () => {
+  console.log("Ride time pass", ride);
+  const handleAcceptRide = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/v1/rides/ride/${ride._id}/accept-request/${ride.rideRequests[0]._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ action: "accept" }),
+        }
+      );
+
+      if (response.ok) {
+        // Handle success, e.g., show a success message or update the UI
+        alert("Ride accepted successfully");
+        if (onAcceptRide) {
+          onAcceptRide(); // You can also call a callback function if provided
+        }
+      } else {
+        // Handle API response indicating an error
+        alert("Error accepting ride");
+      }
+    } catch (error) {
+      console.error("Error accepting ride:", error);
+      alert(
+        "An error occurred while accepting the ride. Please try again later."
+      );
+    }
+  };
+
+  const handleRejectRide = async () => {
+    try {
+      const response = await fetch(
+        `http://localhost:3000/api/v1/rides/ride/${ride._id}/accept-request/${ride.rideRequests[0]._id}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            "x-access-token": localStorage.getItem("token"),
+          },
+          body: JSON.stringify({ action: "reject" }),
+        }
+      );
+
+      if (response.ok) {
+        // Handle success, e.g., show a success message or update the UI
+        alert("Ride rejected successfully");
+        if (onRejectRide) {
+          onRejectRide(); // You can also call a callback function if provided
+        }
+      } else {
+        // Handle API response indicating an error
+        alert("Error rejecting ride");
+      }
+    } catch (error) {
+      console.error("Error rejecting ride:", error);
+      alert(
+        "An error occurred while rejecting the ride. Please try again later."
+      );
+    }
+  };
+
+  const renderButtons = () => {
     if (context === "search" && userRole === "user") {
-      // Display request ride and show map buttons for SearchRide.jsx
       return (
         <div>
           <button className={styles.button} onClick={onRequestRide}>
@@ -22,7 +93,6 @@ function RideCard({ ride, userRole, context, onRequestRide }) {
         </div>
       );
     } else if (context === "myPublished" && userRole === "publisher") {
-      // Display accept/reject buttons for MyPublishedRides.jsx
       return (
         <div>
           <button className={styles.acceptButton} onClick={handleAcceptRide}>
@@ -34,25 +104,17 @@ function RideCard({ ride, userRole, context, onRequestRide }) {
         </div>
       );
     } else {
-      // No button for MyRequestedRides.jsx or other cases
       return null;
     }
-  };
-
-  const handleAcceptRide = () => {
-    // Handle the logic to accept the ride
-  };
-
-  const handleRejectRide = () => {
-    // Handle the logic to reject the ride
   };
 
   return (
     <div className={styles.card}>
       <h2 className={styles.title}>
-        {ride.startLocation} to {ride.destination}
+        {ride.exactStartLocation} to {ride.exactEndLocation}
       </h2>
-      <p className={styles.description}>Route: {ride.routeDescription}</p>
+      <p>{ride.rideRequests.userDetails}</p>
+      <p className={styles.description}>{ride.routeDescription}</p>
       <p className={styles.passengers}>Passengers: {ride.passengers}</p>
       <p className={styles.date}>Date: {ride.date}</p>
       {context !== "myRequested" && (
@@ -60,9 +122,7 @@ function RideCard({ ride, userRole, context, onRequestRide }) {
           Approval Status: {ride.approvalStatus}
         </p>
       )}
-      {renderButton()}
-
-      {/* Render the MapModal when showMapModal state is true */}
+      {renderButtons()}
       {showMapModal && (
         <MapModal ride={ride} onClose={() => setShowMapModal(false)} />
       )}
