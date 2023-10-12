@@ -11,7 +11,7 @@ function Main() {
           </strong>
         </p>
         <span className={styles.navlink}>
-          <NavLink to="/login" className={styles.login}>
+          <NavLink to="/register" className={styles.login}>
             Sign Up
           </NavLink>
         </span>

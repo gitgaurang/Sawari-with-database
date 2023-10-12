@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import PageNav from "../components/PageNav";
+import styles from "./Dashboard.module.css";
 
 function Dashboard() {
   const [userData, setUserData] = useState(null);
@@ -42,11 +43,12 @@ function Dashboard() {
   }, [userData]);
 
   return (
-    <div>
+    <>
+    <div >
       <PageNav />
       {userData ? (
-        <div>
-          <h1>Welcome, {userData.name}!</h1>
+        <div className="Dashboard-info">
+          <h2>Welcome, {userData.name}!</h2>
           <p>Email: {userData.email}</p>
           <p>Phone number:{userData.phoneno}</p>
           <p>Address:{userData.address}</p>
@@ -57,7 +59,17 @@ function Dashboard() {
       ) : (
         <p>Loading...</p>
       )}
+      
     </div>
+    <div>
+    <img
+      src="/carpoolOpenDoor.png"
+      alt="Background"
+      className={styles.backgroundCar}
+    />
+    </div>
+    </>
+
   );
 }
 

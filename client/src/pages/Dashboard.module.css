@@ -1,0 +1,14 @@
+body{
+    overflow: hidden;
+}
+
+.backgroundCar {
+    height: 50%;
+    width: 50%;
+    background-color: rgb(255, 255, 255);
+    float: right;
+    position: relative;
+    top: -15rem;
+    left: 22rem;
+}
+  
