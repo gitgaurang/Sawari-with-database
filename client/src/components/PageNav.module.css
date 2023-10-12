@@ -31,13 +31,13 @@
 
 /* Change font size for navbar links */
 .nav li {
-  font-size: 30px; /* Adjust the font size as needed */
-  font-weight: 700;
+  font-size: 22px; /* Adjust the font size as needed */
+  font-weight: 200;
   text-decoration: none;
   color: white; /* Set link color */
 }
 a {
-  font-weight: 100;
+  font-weight: 20;
   color: #195b61;
   text-decoration: inherit;
 }
