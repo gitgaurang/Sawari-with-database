@@ -2,7 +2,7 @@
 
 /* Style the container for all MyPublishedRideCards */
 .myPublishedRidesContainer {
-  color: #016A70;
+  color: #016a70;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -21,7 +21,7 @@
 }
 
 .myPublishedRideCard h2 {
-  color: #016A70;
+  color: #016a70;
   font-size: 18px;
   margin: 0;
 }
@@ -42,4 +42,3 @@
 .myPublishedRideCard button:hover {
   background: #0056b3;
 }
-
