@@ -36,7 +36,7 @@ function PageNav() {
       <nav className={styles.nav}>
         <Logo />
         <ul>
-          <li>
+          <li className="nav">
             {isLoggedIn ? (
               // If the user is logged in, show the link to "/dashboard"
               // <NavLink to="/dashboard">Dashboard</NavLink>
@@ -61,7 +61,7 @@ function PageNav() {
           <li>
             {isLoggedIn ? (
               // If the user is logged in, show the "Logout" button
-              <button onClick={handleLogout}>Logout</button>
+              <button onClick={handleLogout} className="logout-button">Logout</button>
             ) : (
               // If the user is not logged in, show the "Login" link
               <NavLink to="/login" className={styles.ctaLink}>

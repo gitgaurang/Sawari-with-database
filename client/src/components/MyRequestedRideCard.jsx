@@ -25,6 +25,7 @@
 // }
 
 // export default MyRequestedRideCard;
+
 import React, { useState, useEffect } from "react";
 import styles from "./MyRequestedRideCard.module.css";
 
@@ -77,7 +78,7 @@ function MyRequestedRideCard({ ride, userId }) {
     getUserDetails();
   }, []);
 
-  return (
+  return (<>
     <div className={styles.card}>
       {/* <h2>Ride Details</h2> */}
       <h3>Requested Ride Details</h3>
@@ -105,6 +106,7 @@ function MyRequestedRideCard({ ride, userId }) {
           : "Loading..."}
       </p>
     </div>
+    </>
   );
 }
 

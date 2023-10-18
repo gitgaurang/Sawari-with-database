@@ -67,6 +67,7 @@
 // }
 
 // export default MyPublishedRides;
+import PageNav from "../components/PageNav";
 import React, { useState, useEffect } from "react";
 import MyPublishedRideCard from "../components/MyPublishedRideCard";
 import styles from "./MyPublishedRides.module.css";
@@ -109,9 +110,13 @@ function MyPublishedRides() {
   useEffect(() => {
     fetchPublishedRides();
   }, []);
-  return (
+  return (<>
+
+    <PageNav/>
     <div>
-      <h2>My Published Rides</h2>
+      <h2 style={{textAlign: 'center',
+            padding: '90px 0px 10px 0px'
+    }}>My Published Rides</h2>
       <div className={styles.myPublishedRidesContainer}>
         {publishedRides.map((ride, index) => (
           // <div key={index} className={styles.myPublishedRideCard}>
@@ -121,6 +126,7 @@ function MyPublishedRides() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 

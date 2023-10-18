@@ -2,7 +2,7 @@ import { NavLink } from "react-router-dom";
 import styles from "./Main.module.css";
 function Main() {
   return (
-    <div className={styles.background}>
+    <div className={styles.background} style={{ color: '#FFFFDD' }}>
       <div className={styles.about}>
         <p className={styles.aboutpara}>
           <strong>

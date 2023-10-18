@@ -11,8 +11,9 @@
 
 /* Add a new class for your main card */
 .mainCard {
+  
   width: auto; /* Set the width to 100% */
-  border: 1px solid #ddd; /* Add a border for each main card */
+  border: 1px solid #000000; /* Add a border for each main card */
   border-radius: 5px;
   padding: 10px;
   margin-bottom: 10px; /* Add some margin between main cards */

@@ -242,6 +242,17 @@ function PublishRide({ onSubmit }) {
         <select
           value={startLocation}
           onChange={(e) => setStartLocation(e.target.value)}
+          style={{
+            padding: '5px',     // Add padding
+              fontSize: '16px',   // Set font size
+              border: '1px solid #ccc', // Add a border
+              borderRadius: '5px',  // Add rounded corners
+              width: '200px',      // Set the width
+              backgroundColor: '#f0f0f0', // Set the background color
+              color: 'black',
+              fontFamily: 'Times new Roman'
+
+          }}
         >
           <option value="">Select Start city</option>
           <option value="Mumbai">Mumbai</option>
@@ -254,6 +265,17 @@ function PublishRide({ onSubmit }) {
         <select
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
+          style={{
+            padding: '5px',     // Add padding
+              fontSize: '16px',   // Set font size
+              border: '1px solid #ccc', // Add a border
+              borderRadius: '5px',  // Add rounded corners
+              width: '200px',      // Set the width
+              backgroundColor: '#f0f0f0', // Set the background color
+              color: 'black',
+              fontFamily: 'Times new Roman'
+
+          }}
         >
           <option value="">Select Destination city</option>
           <option value="Mumbai">Mumbai</option>
@@ -264,23 +286,38 @@ function PublishRide({ onSubmit }) {
           {/* Add more options as needed */}
         </select>
         <input
+        style={{color:'white'}}
           type="text"
           placeholder="exactStartLocation"
-          value={exactStartLocation}
+          value={'Source Landmark'}
           onChange={(e) => setExactStartLocation(e.target.value)}
         />
         <input
+          style={{color:'white'}}
           type="text"
           placeholder="exactEndLocation"
-          value={exactEndLocation}
+          value={'Destination Landmark'}
           onChange={(e) => setExactEndLocation(e.target.value)}
         />
         <textarea
+        style={{
+          padding: '5px',     // Add padding
+              fontSize: '16px',   // Set font size
+              border: '1px solid #ccc', // Add a border
+              borderRadius: '5px',  // Add rounded corners
+              width: '200px',      // Set the width
+              backgroundColor: '#f0f0f0', // Set the background color
+              color: 'black',
+              fontFamily: 'Times new Roman'
+        }}
           placeholder="Route Description"
           value={routeDescription}
           onChange={(e) => setRouteDescription(e.target.value)}
         ></textarea>
         <input
+          style={{
+            color: 'white'
+          }}
           type="date"
           placeholder="Date"
           className={styles.date}
@@ -288,17 +325,24 @@ function PublishRide({ onSubmit }) {
           onChange={(e) => setDate(e.target.value)}
         />
         <input
+        style={{color: 'white'}}
           type="number"
-          placeholder="Passengers"
+          placeholder="0"
           value={passengers}
           onChange={(e) => setPassengers(e.target.value)}
         />
         <button type="submit">Publish ride</button>
       </form>
       <img
-        src="/carpoolOpenDoor.png"
-        alt="Background"
-        className={styles.backgroundCar}
+          style={{
+                float: 'right',
+                top: '-34rem',
+                left: '59rem',
+                backgroundColor:"#FFFFDD"
+          }}
+            src="/carpoolOpenDoor.png"
+            alt="Background"
+            className={styles.backgroundCar}
       />
     </div>
   );

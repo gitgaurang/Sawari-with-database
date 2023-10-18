@@ -81,7 +81,7 @@ function RideCard({
     if (context === "search" && userRole === "user") {
       return (
         <div>
-          <button className={styles.button} onClick={onRequestRide}>
+          <button className={styles.button} onClick={onRequestRide} style={{marginRight: '15px'}}>
             Request Ride
           </button>
           <button

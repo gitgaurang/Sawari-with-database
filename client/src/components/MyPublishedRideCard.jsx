@@ -139,6 +139,7 @@
 import React from "react";
 import styles from "./MyPublishedRideCard.module.css";
 
+
 function MyPublishedRideCard({ ride }) {
   console.log("HEloo ride ", ride);
   const handleAccept = async (requestId) => {
@@ -208,7 +209,7 @@ function MyPublishedRideCard({ ride }) {
   //   console.log("hellllllllllllllllo", request._id);
   // });
 
-  return (
+  return (<>
     <div className={styles.card}>
       <h2>Ride Details</h2>
       <br></br>
@@ -221,11 +222,12 @@ function MyPublishedRideCard({ ride }) {
           <p>{request.userDetails.email}</p>
           <p>Message: {request.userDetails.message}</p>
           <p>Request Date: {request.userDetails.requestDate}</p>
-          <button onClick={() => handleAccept(request._id)}>Accept</button>
+          <button onClick={() => handleAccept(request._id)} style={{margin:'0px 10px 0px 0px'}}>Accept</button>
           <button onClick={() => handleReject(request._id)}>Reject</button>
         </div>
       ))}
     </div>
+    </>
   );
 }
 

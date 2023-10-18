@@ -27,6 +27,7 @@
 // }
 
 // export default MyRequestedRides;
+import PageNav from "../components/PageNav";
 import React, { useState, useEffect } from "react";
 import MyRequestedRideCard from "../components/MyRequestedRideCard";
 
@@ -72,15 +73,19 @@ function MyRequestedRides() {
     fetchRequestedRides();
   }, []);
 
-  return (
+  return (<>
+  
+  <PageNav/>
     <div>
-      <h2>My Requested Rides</h2>
-      <div>
+<h2 style={{textAlign: 'center',
+            padding: '90px 0px 10px 0px'
+    }}>My Requested Rides</h2>      <div>
         {requestedRides.map((ride, index) => (
           <MyRequestedRideCard key={index} ride={ride} userId={userId} />
         ))}
       </div>
     </div>
+    </>
   );
 }
 

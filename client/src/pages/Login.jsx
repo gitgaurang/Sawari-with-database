@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css";
+import { NavLink } from "react-router-dom";
+
 
 export default function Login() {
   const navigate = useNavigate();
@@ -40,8 +42,8 @@ export default function Login() {
 
   return (
     <main className={styles.login}>
-      <h1>Login</h1>
       <form className={styles.form} onSubmit={handleSubmit}>
+      <h1 style={{ color: 'white' }}>Login</h1>
         <div className={styles.row}>
           <label htmlFor="email">Email address</label>
           <input
@@ -63,7 +65,12 @@ export default function Login() {
         <div>
           <button type="submit">Login</button>
         </div>
+        <p style={{Ncolor: 'white'}}>New user? Register here</p>
+        <NavLink to="/register" style={{textDecoration: 'underline', color: 'white'  }}>
+          Register 
+        </NavLink>
       </form>
+      
     </main>
   );
 }

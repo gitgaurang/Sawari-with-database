@@ -1,20 +1,28 @@
 .register {
-  margin: 2.5rem auto; /* Center the registration form */
-  padding: 2.5rem 3rem; /* Adjust padding */
-  background-color: #195b61;
-  min-height: calc(100vh - 5rem);
+  
+  /* min-height: 5rem; */
+  margin: 2.5rem 3rem;
+  /* padding: 0rem 0rem; */
+  background-color: #195b61c3;
+  /* min-height: calc(100vh - 5rem); */
   display: flex;
-  flex-direction: column; /* Make it a column layout */
-  align-items: center; /* Center content horizontally */
-  justify-content: center; /* Center content vertically */
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   border-radius: 3rem;
-  min-width: 38rem; /* Adjust max width */
+  min-width: 43rem;
   position: relative;
-  left: 30rem;
+  left: 50%;
+  
+}
+
+.Submit-button{
+  border: 2px solid black;
 }
 
 .form {
-  background-color: #195b61;
+  color: white;
+  background-color: #5e9ba100;
   border-radius: 7px;
   padding: 2rem;
   width: 100%;
@@ -33,7 +41,7 @@
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   font-size: 1.5rem;
   font-weight: 500;
-  color: rgb(3, 56, 32);
+  color: rgb(255, 255, 255);
   width: 100%; /* Take up the full width */
   max-width: 100%; /* Make sure it doesn't exceed the container width */
 }
@@ -44,4 +52,8 @@
   gap: 0.5rem;
   width: 100%; /* Take up the full width */
   max-width: 100%; /* Make sure it doesn't exceed the container width */
+}
+
+body{
+  Overflow:Visible
 }

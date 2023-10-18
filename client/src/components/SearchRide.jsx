@@ -212,6 +212,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./SearchRide.module.css";
 import RideCard from "./RideCard";
+import PageNav from "./PageNav";
 
 function SearchRides() {
   const [startLocation, setStartLocation] = useState("");
@@ -318,9 +319,11 @@ function SearchRides() {
   };
 
   return (
-    <div>
+    <>
+    <PageNav/>
+    <div style={{marginTop:'5rem'}}>
       <h2 className={styles.heading}>Search Rides</h2>
-      <form className={styles.form} onSubmit={handleSubmit}>
+      <form className={styles.form} onSubmit={handleSubmit} style={{display: 'flex',flexDirection:'column'}}>
         <label className={styles.label}>
           Start City:
           <select
@@ -367,6 +370,7 @@ function SearchRides() {
         ))}
       </div>
     </div>
+    </>
   );
 }
 
