@@ -208,16 +208,15 @@
 //   );
 // }
 
-// export default SearchRides;
-import React, { useState, useEffect } from "react";
+// export default SearchRides;import React, { useState, useEffect } from "react";
 import styles from "./SearchRide.module.css";
 import RideCard from "./RideCard";
 import PageNav from "./PageNav";
+import { useState } from "react";
 
 function SearchRides() {
   const [startLocation, setStartLocation] = useState("");
   const [destination, setDestination] = useState("");
-  const [allRides, setAllRides] = useState([]);
   const [filteredRides, setFilteredRides] = useState([]);
 
   // Function to fetch ride data from your API
@@ -266,15 +265,20 @@ function SearchRides() {
     console.log("Rides list:", ridesList);
     // Check if ridesList is an array before filtering
     if (Array.isArray(ridesList)) {
-      // Filter rides based on selected startLocation and destination
-      const filtered = ridesList.filter(
-        (ride) =>
+      // Get today's date
+      const today = new Date();
+
+      // Filter rides based on selected startLocation and destination, and ride date
+      const filtered = ridesList.filter((ride) => {
+        const rideDate = new Date(ride.date); // Convert ride date to a Date object
+        return (
           (!startLocation || ride.startLocation === startLocation) &&
-          (!destination || ride.destination === destination)
-      );
+          (!destination || ride.destination === destination) &&
+          rideDate > today // Filter based on date
+        );
+      });
 
       setFilteredRides(filtered);
-      console.log("filtered rides:", filteredRides);
     }
   };
 
@@ -320,56 +324,60 @@ function SearchRides() {
 
   return (
     <>
-    <PageNav/>
-    <div style={{marginTop:'5rem'}}>
-      <h2 className={styles.heading}>Search Rides</h2>
-      <form className={styles.form} onSubmit={handleSubmit} style={{display: 'flex',flexDirection:'column'}}>
-        <label className={styles.label}>
-          Start City:
-          <select
-            className={styles.select}
-            onChange={(e) => setStartLocation(e.target.value)}
-          >
-            <option value="">All</option>
-            <option value="Thane">Thane</option>
-            <option value="Mumbai">Mumbai</option>
-            <option value="Dombivili">Dombivili</option>
-            <option value="Kalyan">Kalyan</option>
-            <option value="Pune">Pune</option>
-            {/* Add more options as needed */}
-          </select>
-        </label>
-        <label className={styles.label}>
-          Destination City:
-          <select
-            className={styles.select}
-            onChange={(e) => setDestination(e.target.value)}
-          >
-            <option value="">All</option>
-            <option value="Thane">Thane</option>
-            <option value="Dombivili">Dombivili</option>
-            <option value="Mumbai">Mumbai</option>
-            <option value="Pune">Pune</option>
-            <option value="Kalyan">Kalyan</option>
-            {/* Add more options as needed */}
-          </select>
-        </label>
-        <button className={styles.button} type="submit">
-          Search
-        </button>
-      </form>
-      <div className={styles.rideCards}>
-        {filteredRides.map((ride, index) => (
-          <RideCard
-            key={index}
-            ride={ride}
-            userRole="user"
-            context="search"
-            onRequestRide={() => handleRequestRide(ride._id)} // Pass the rideId to handleRequestRide
-          />
-        ))}
+      <PageNav />
+      <div style={{ marginTop: "5rem" }}>
+        <h2 className={styles.heading}>Search Rides</h2>
+        <form
+          className={styles.form}
+          onSubmit={handleSubmit}
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <label className={styles.label}>
+            Start City:
+            <select
+              className={styles.select}
+              onChange={(e) => setStartLocation(e.target.value)}
+            >
+              <option value="">All</option>
+              <option value="Thane">Thane</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Dombivili">Dombivili</option>
+              <option value="Kalyan">Kalyan</option>
+              <option value="Pune">Pune</option>
+              {/* Add more options as needed */}
+            </select>
+          </label>
+          <label className={styles.label}>
+            Destination City:
+            <select
+              className={styles.select}
+              onChange={(e) => setDestination(e.target.value)}
+            >
+              <option value="">All</option>
+              <option value="Thane">Thane</option>
+              <option value="Dombivili">Dombivili</option>
+              <option value="Mumbai">Mumbai</option>
+              <option value="Pune">Pune</option>
+              <option value="Kalyan">Kalyan</option>
+              {/* Add more options as needed */}
+            </select>
+          </label>
+          <button className={styles.button} type="submit">
+            Search
+          </button>
+        </form>
+        <div className={styles.rideCards}>
+          {filteredRides.map((ride, index) => (
+            <RideCard
+              key={index}
+              ride={ride}
+              userRole="user"
+              context="search"
+              onRequestRide={() => handleRequestRide(ride._id)} // Pass the rideId to handleRequestRide
+            />
+          ))}
+        </div>
       </div>
-    </div>
     </>
   );
 }

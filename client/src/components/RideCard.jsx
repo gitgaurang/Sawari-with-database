@@ -12,7 +12,7 @@ function RideCard({
 }) {
   const [showMapModal, setShowMapModal] = useState(false);
 
-  console.log("Ride time pass", ride);
+  console.log("Ride time passmmmmmmmmmmmmmmmmmmmmmmmm", ride);
   const handleAcceptRide = async () => {
     try {
       const response = await fetch(
@@ -81,7 +81,11 @@ function RideCard({
     if (context === "search" && userRole === "user") {
       return (
         <div>
-          <button className={styles.button} onClick={onRequestRide} style={{marginRight: '15px'}}>
+          <button
+            className={styles.button}
+            onClick={onRequestRide}
+            style={{ marginRight: "15px" }}
+          >
             Request Ride
           </button>
           <button
@@ -117,11 +121,11 @@ function RideCard({
       <p className={styles.description}>{ride.routeDescription}</p>
       <p className={styles.passengers}>Passengers: {ride.passengers}</p>
       <p className={styles.date}>Date: {ride.date}</p>
-      {context !== "myRequested" && (
+      {/* {context !== "myRequested" && (
         <p className={styles.approvalStatus}>
           Approval Status: {ride.approvalStatus}
         </p>
-      )}
+      )} */}
       {renderButtons()}
       {showMapModal && (
         <MapModal ride={ride} onClose={() => setShowMapModal(false)} />

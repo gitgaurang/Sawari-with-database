@@ -109,23 +109,24 @@ function MyPublishedRides() {
 
   useEffect(() => {
     fetchPublishedRides();
+    console.log("hiiiiiiiiiisghfhfgfgfgf", publishedRides);
   }, []);
-  return (<>
-
-    <PageNav/>
-    <div>
-      <h2 style={{textAlign: 'center',
-            padding: '90px 0px 10px 0px'
-    }}>My Published Rides</h2>
-      <div className={styles.myPublishedRidesContainer}>
-        {publishedRides.map((ride, index) => (
-          // <div key={index} className={styles.myPublishedRideCard}>
-          <div key={index} className={styles.myPublishedRideCard}>
-            <MyPublishedRideCard ride={ride} />
-          </div>
-        ))}
+  return (
+    <>
+      <PageNav />
+      <div>
+        <h2 style={{ textAlign: "center", padding: "90px 0px 10px 0px" }}>
+          My Published Rides
+        </h2>
+        <div className={styles.myPublishedRidesContainer}>
+          {publishedRides.map((ride, index) => (
+            // <div key={index} className={styles.myPublishedRideCard}>
+            <div key={index} className={styles.myPublishedRideCard}>
+              <MyPublishedRideCard ride={ride} />
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
     </>
   );
 }
