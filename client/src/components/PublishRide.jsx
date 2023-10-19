@@ -207,6 +207,8 @@ function PublishRide({ onSubmit }) {
                 if (data.status === "ok") {
                   // Handle success
                   console.log("Ride published successfully!");
+                  alert("Ride published succesfully");
+
                   // You can also reset the form fields if needed
                   setStartLocation("");
                   setDestination("");
