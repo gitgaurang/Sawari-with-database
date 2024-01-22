@@ -12,6 +12,13 @@ const DB = process.env.DATABASE.replace(
 );
 
 // console.log(DB);
+app.use(cors(
+  {
+    origin:{["https://sawari-with-database.vercel.app/"],
+    methods: ["POST","GET"],
+    credentials: true
+  }
+));
 
 // It return a promise that is why, "then --> to return an successfull response" & "catch --> To catch error" is used.
 mongoose
